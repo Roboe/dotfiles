@@ -1,0 +1,8 @@
+!.gitignore
+
+# Ignore all my files! They are private! ¬¬
+*
+*/*
+
+# Include only dotfiles
+!.bashrc
