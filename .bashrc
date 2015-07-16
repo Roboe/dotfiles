@@ -80,9 +80,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# Mkdir and cd to the dir
-#alias mkd='mkdir -p "$@" && eval cd "\"\$$#\""'
-
 # Disks relation
 alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
 
@@ -97,9 +94,6 @@ alias jkill='kill $!'
 alias subgit='git submodule'
 alias x='history -cw && exit' # Exit clearing history
 alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
-
-# Applications WIP
-alias ff='firefox > /dev/null &'
 
 
 # --------- #
@@ -152,10 +146,3 @@ function up() {
 }
 
 alias upper='up --per'
-
-
-# ------------ #
-# TEMP ALIASES #
-# ------------ #
-
-alias film='cd ~/h4/filmviz/'
