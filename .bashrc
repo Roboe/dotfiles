@@ -56,7 +56,7 @@ FBLE="\[\033[34m\]" # foreground blue
 ## 'user in ~/foo/bar \n $'
 #PS1='┌─╼[\[\e[1;34m\]\h\[\e[0;37m\]]╾─╼[\[\e[1;37m\]\w\[\e[0;37m\]]$(__git_ps1) \n└─╼\[\e[1;34m\]\$ \[\e[m\]'
 ## '┌─╼[user]]╾─╼[~/foo/bar] (branch) \n └╼ $'
-PS1="┌─╼[$HC$FBLE\h$RS]╾─╼[$FGRN\w$RS]$(__git_ps1) \n└╼ $HC\$ $RS"
+PS1="┌─╼[$HC$FBLE\h$RS]╾─╼[$FGRN\w$RS]\$(__git_ps1) \n└╼ $HC\$ $RS"
 
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
