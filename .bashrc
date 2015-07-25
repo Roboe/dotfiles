@@ -94,6 +94,9 @@ alias jkill='kill $!'
 alias x='history -cw && exit' # Exit clearing history
 alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
 
+# Git things
+alias gtree='git log --graph --pretty=oneline --abbrev-commit'
+
 
 # --------- #
 # FUNCTIONS #
