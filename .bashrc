@@ -91,7 +91,6 @@ alias jobs='jobs -l'
 alias jkill='kill $!'
 
 # **Strongly personal custom aliases**. You have been warned.
-alias subgit='git submodule'
 alias x='history -cw && exit' # Exit clearing history
 alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
 
