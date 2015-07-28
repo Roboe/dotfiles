@@ -95,7 +95,18 @@ alias x='history -cw && exit' # Exit clearing history
 alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
 
 # Git things
-alias gtree='git log --graph --pretty=oneline --abbrev-commit'
+#alias gtree='git log --graph --pretty=oneline --abbrev-commit'
+alias gtree='git log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"'
+
+alias gs="git status"
+alias gb="git branch"
+alias gd="git diff"
+
+alias gr="git gr"
+alias gm="git commit"
+
+# Update fork from upstream -> _must_ be in master for it to work
+alias guf="git checkout master && git pull upstream master && git push origin master"
 
 
 # --------- #
