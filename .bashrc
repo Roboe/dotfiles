@@ -83,16 +83,16 @@ alias .....='cd ../../../..'
 # Disks relation
 alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
 
+# Python3 by default
+alias python='python3'
+alias pip='pip3'
+
 # Static server, from this superuseful Gist https://gist.github.com/willurd/5720255
 alias serve='echo "Serving on http://0.0.0.0:8000/"; python -m SimpleHTTPServer 8000 &'
 
 # Terminal jobs
 alias jobs='jobs -l'
 alias jkill='kill $!'
-
-# **Strongly personal custom aliases**. You have been warned.
-alias x='history -cw && exit' # Exit clearing history
-alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
 
 # Git things
 #alias gtree='git log --graph --pretty=oneline --abbrev-commit'
@@ -104,6 +104,11 @@ alias gd="git diff"
 
 alias gr="git gr"
 alias gm="git commit"
+
+
+# **Strongly personal custom aliases**. You have been warned.
+alias x='history -cw && exit' # Exit clearing history
+alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
 
 # Update fork from upstream -> _must_ be in master for it to work
 alias guf="git checkout master && git pull upstream master && git push origin master"
@@ -118,6 +123,18 @@ function rgf() {
 		cd ..;
 	done
 }
+
+function rgp() {
+	for file in ./*; do
+		cd $file;
+		if [ -d .git ]; then
+			echolorize $(pwd);
+			git pull;
+		fi
+		cd ..;
+	done
+}
+
 
 # --------- #
 # FUNCTIONS #
