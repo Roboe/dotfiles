@@ -108,6 +108,16 @@ alias gm="git commit"
 # Update fork from upstream -> _must_ be in master for it to work
 alias guf="git checkout master && git pull upstream master && git push origin master"
 
+function rgf() {
+	for file in ./*; do
+		cd $file;
+		if [ -d .git ]; then
+			echolorize $(pwd);
+			git fetch;
+		fi
+		cd ..;
+	done
+}
 
 # --------- #
 # FUNCTIONS #
