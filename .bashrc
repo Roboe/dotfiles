@@ -120,7 +120,7 @@ function echolorize() {
     # Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
     clz="\e[44m" # Blue background
     endclz="\e[0m" # No background color
- 
+
     if [ "$#" != 0 ]; then
         if [ "$#" -eq 2 ]; then
             case "$1" in
@@ -142,18 +142,18 @@ function echolorize() {
 function up() {
 	echolorize "UPDATE"
 	sudo apt-get update -qq;
-	 
+
 	echolorize "UPGRADE"
 	sudo apt-get upgrade -y;
-	 
+
 	if [ "$#" != 0 ] && [ "$1" == "--per" ]; then
 		echolorize --danger "DIST-UPGRADE"
 		sudo apt-get dist-upgrade;
 	fi
-	 
-	echolorize -advise "AUTOREMOVE --PURGE"
+
+	echolorize --advise "AUTOREMOVE --PURGE"
 	sudo apt-get autoremove --purge -y;
-	 
+
 	echolorize "AUTOCLEAN"
 	sudo apt-get autoclean;
 }
