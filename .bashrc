@@ -7,20 +7,15 @@
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -53,136 +48,19 @@ FGRN="\[\033[32m\]" # foreground green
 FBLE="\[\033[34m\]" # foreground blue
 
 # Change prompt
-## 'user in ~/foo/bar \n $'
-#PS1='┌─╼[\[\e[1;34m\]\h\[\e[0;37m\]]╾─╼[\[\e[1;37m\]\w\[\e[0;37m\]]$(__git_ps1) \n└─╼\[\e[1;34m\]\$ \[\e[m\]'
-## '┌─╼[user]]╾─╼[~/foo/bar] (branch) \n └╼ $'
-PS1="┌─╼[$HC$FBLE\h$RS]╾─╼[$FGRN\w$RS]\$(__git_ps1) \n└╼ $HC\$ $RS"
+PS1=""
+PS1+="┌─╼[$HC$FBLE\h$RS]╾─╼[$FGRN\w$RS]\$(__git_ps1) \n"
+PS1+="└╼ $HC\$ $RS"
 
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
 
-# Show distro and screen info
-if [ -d ~/bin ]; then
-	screenfetch
+# Add aliases and functions
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
 fi
 
-
-# --------------------- #
-# ALIASES AND FUNCTIONS #
-# --------------------- #
-
-# System updating and cleanup for Arch Linux
-#alias packages-update='yaourt -Syua && sudo pacman -Rns $(pacman -Qqdt)'
-
-# Dir thingies
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-
-# Disks relation
-alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
-
-# Python3 by default
-alias python='python3'
-alias pip='pip3'
-
-# Static server, from this superuseful Gist https://gist.github.com/willurd/5720255
-alias serve='echo "Serving on http://0.0.0.0:8000/"; python -m SimpleHTTPServer 8000 &'
-
-# Terminal jobs
-alias jobs='jobs -l'
-alias jkill='kill $!'
-
-# Git things
-#alias gtree='git log --graph --pretty=oneline --abbrev-commit'
-alias gtree='git log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"'
-
-alias gs="git status"
-alias gb="git branch"
-alias gd="git diff"
-
-alias gr="git gr"
-alias gm="git commit"
-
-
-# **Strongly personal custom aliases**. You have been warned.
-alias x='history -cw && exit' # Exit clearing history
-alias tree='find . -type d -print | sed -e "s;[^/]*/;|____;g;s;____|; |;g"' # Tree ls
-
-# Update fork from upstream -> _must_ be in master for it to work
-alias guf="git checkout master && git pull upstream master && git push origin master"
-
-function rgf() {
-	for file in ./*; do
-		cd $file;
-		if [ -d .git ]; then
-			echolorize $(pwd);
-			git fetch;
-		fi
-		cd ..;
-	done
-}
-
-function rgp() {
-	for file in ./*; do
-		cd $file;
-		if [ -d .git ]; then
-			echolorize $(pwd);
-			git pull;
-		fi
-		cd ..;
-	done
-}
-
-
-# --------- #
-# FUNCTIONS #
-# --------- #
-function mkd() {
-	mkdir -p "$@" && cd "$@"
-}
-
-function echolorize() {
-    # Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-    clz="\e[44m" # Blue background
-    endclz="\e[0m" # No background color
-
-    if [ "$#" != 0 ]; then
-        if [ "$#" -eq 2 ]; then
-            case "$1" in
-            "--danger")
-                clz="\e[41m" # Red background
-                ;;
-            "--advise")
-                clz="\e[43m" # Yellow background
-                ;;
-            *)
-                ;;
-            esac
-            shift # $2 becomes $1
-        fi
-        echo -e "${clz}# $1 ${endclz}"
-    fi
-}
-
-function up() {
-	echolorize "UPDATE"
-	sudo apt-get update -qq;
-
-	echolorize "UPGRADE"
-	sudo apt-get upgrade -y;
-
-	if [ "$#" != 0 ] && [ "$1" == "--per" ]; then
-		echolorize --danger "DIST-UPGRADE"
-		sudo apt-get dist-upgrade;
-	fi
-
-	echolorize --advise "AUTOREMOVE --PURGE"
-	sudo apt-get autoremove --purge -y;
-
-	echolorize "AUTOCLEAN"
-	sudo apt-get autoclean;
-}
-
-alias upper='up --per'
+# Show distro and screen info
+if [ -d ~/bin ]; then
+  screenfetch
+fi
