@@ -75,6 +75,10 @@ alias gs="git status"
 alias gb="git branch"
 alias gd="git diff"
 
+# Remove local branches already deleted from remote. Use like so:
+#   gprune <remote>
+alias gprune="git remote prune"
+
 # Update fork from upstream
 function guf {
   git checkout master
