@@ -40,6 +40,9 @@ fi
 # Set 'nano' as the default editor
 export EDITOR=nano
 
+# Disable .bash_history
+unset HISTFILE
+
 # Colors
 RS="\[\033[0m\]"    # reset
 HC="\[\033[1m\]"    # hicolor
