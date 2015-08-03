@@ -37,8 +37,8 @@ alias pip='pip3'
 # Static server
 ## From this superuseful Gist: https://gist.github.com/willurd/5720255
 alias serve='serve2'
-alias serve2='echo "Go to http://0.0.0.0:8000/"; python2 -m SimpleHTTPServer 8000'
-alias serve3='echo "Go to http://0.0.0.0:8000/"; python3 -m http.server 8000'
+alias serve2='echo "Go to http://localhost:8000/"; python2 -m SimpleHTTPServer 8000'
+alias serve3='echo "Go to http://localhost:8000/"; python3 -m http.server 8000'
 
 # Highlight some important headers
 function echolorize {
