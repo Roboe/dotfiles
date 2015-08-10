@@ -108,6 +108,9 @@ function grec {
 # Disks relation
 alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
 
+# Restart NetworkManager service
+alias renm='sudo systemctl restart NetworkManager'
+
 # System update and cleanup for Arch/Parabola
 function pac-up {
   yaourt -Syua
