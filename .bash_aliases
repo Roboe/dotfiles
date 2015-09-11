@@ -59,6 +59,13 @@ function echolorize {
   fi
 }
 
+function vagrant {
+  curl -O https://raw.githubusercontent.com/adlawson/vagrantfiles/master/$1/Vagrantfile
+  vagrant up
+  vagrant ssh
+  cd /srv
+}
+
 
 # ------------- #
 # GIT SHORTCUTS #
