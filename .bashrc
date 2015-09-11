@@ -33,15 +33,25 @@ if ! shopt -oq posix; then
 fi
 
 
-# ---------------------- #
-#  ROBOE CUSTOMIZATIONS  #
-# ---------------------- #
+# --------------- #
+# CUSTOMIZATIONS  #
+# --------------- #
 
 # Set 'nano' as the default editor
 export EDITOR=nano
 
 # Disable .bash_history
 unset HISTFILE
+
+# Python 3 by default
+## To use Python 2, use python2 and pip2 instead
+alias python='python3'
+alias pip='sudo -H pip3'
+
+# VirtualEnvWrapper setup
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Colors
 RS="\[\033[0m\]"    # reset

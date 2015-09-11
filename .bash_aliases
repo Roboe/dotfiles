@@ -29,11 +29,6 @@ alias jkill='kill $!'
 # Exit clearing history
 alias x='history -cw && exit'
 
-# Python 3 by default
-## To use Python 2, use python2 and pip2 instead
-alias python='python3'
-alias pip='pip3'
-
 # Static server
 ## From this superuseful Gist: https://gist.github.com/willurd/5720255
 alias serve='serve2'
