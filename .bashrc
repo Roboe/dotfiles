@@ -74,6 +74,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Show distro and screen info
-if [ -d ~/bin ]; then
+if [ $(which screenfetch) ]; then
   screenfetch
 fi
