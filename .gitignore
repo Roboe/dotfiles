@@ -7,3 +7,4 @@
 # Include only dotfiles
 !.bashrc
 !.bash_aliases
+!.profile
