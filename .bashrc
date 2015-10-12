@@ -68,11 +68,6 @@ PS1+="└╼ $HC\$ $RS"
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
 
-# Check if ~/bin is not in the path; then add it
-if [ -d "$HOME/bin" ] && [[ $PATH != *$HOME/bin:* ]]; then
-  export PATH="$HOME/bin:$PATH"
-fi
-
 # Add aliases and functions
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
