@@ -1,12 +1,14 @@
-# ------------------------------- #
-# SELECTED DEFAULT CONFIGURATIONS #
-# ------------------------------- #
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Differences between [ and [[: http://mywiki.wooledge.org/BashFAQ/031
+
+# --------------- #
+# TERMINAL COLORS #
+# --------------- #
+
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [[ -x /usr/bin/dircolors ]]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
   alias dir='dir --color=auto'
@@ -17,25 +19,36 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# From Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+#RS="\[\033[0m\]"    # reset
+RS="\e[0m"
+HC="\[\033[1m\]"    # hicolor
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+FRED="\[\033[31m\]" # red foreground
+FGRN="\[\033[32m\]" # green foreground
+FBLE="\[\033[33m\]" # yellow foreground
+FBLE="\[\033[34m\]" # blue foreground
+
+BRED="\e[41m" # red background
+BGRN="\e[42m" # green background
+BYLW="\e[43m" # yellow background
+BBLE="\e[44m" # blue background
+
+function echolorize {
+  endclz=$RS # Reset color
+  case "$1" in
+  "--danger") clz=$BRED && shift ;; # red bg
+  "--advise") clz=$BYLW && shift ;; # yellow bg
+  *) clz=$BBLE ;; # blue bg (default)
+  esac
+
+  [[ "$#" != 0 ]] && echo -e "${clz}# $1 ${endclz}"
+}
 
 
-# --------------- #
-# CUSTOMIZATIONS  #
-# --------------- #
+# ----------------- #
+# SESSION SETTINGS  #
+# ----------------- #
 
 # Set 'nano' as the default editor
 export EDITOR=nano
@@ -43,22 +56,16 @@ export EDITOR=nano
 # Disable .bash_history
 unset HISTFILE
 
-# Python 3 by default
-## To use Python 2, use python2 and pip2 instead
-alias python='python3'
-alias pip='sudo -H pip3'
-
-# VirtualEnvWrapper setup
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
-
-# Colors
-RS="\[\033[0m\]"    # reset
-HC="\[\033[1m\]"    # hicolor
-FRED="\[\033[31m\]" # foreground red
-FGRN="\[\033[32m\]" # foreground green
-FBLE="\[\033[34m\]" # foreground blue
+# enable programmable completion features (you don't need to enable
+# this if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [[ -f /etc/bash_completion ]]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # Change prompt
 PS1=""
@@ -68,12 +75,138 @@ PS1+="└╼ $HC\$ $RS"
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
 
+
+# ----------- #
+# ENVIRONMENT #
+# ----------- #
+
+# Python 3 by default if available
+## To use Python 2, use 'python2' instead
+[[ $(which python3) ]] && alias python='python3'
+
+# Java setup
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
+# Python VirtualEnvWrapper setup
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Node Version Manager setup
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Add Android SDK to PATH
+PATH="$PATH:/opt/android-sdk-linux/platform-tools"
+
+# Add Android Studio to PATH
+PATH="$PATH:/opt/android-studio/bin"
+
+
+# --------------------- #
+# ALIASES AND FUNCTIONS #
+# --------------------- #
+
 # Add aliases and functions
-if [ -f ~/.bash_aliases ]; then
-  source ~/.bash_aliases
+#[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+
+# Terminal navigation
+## Shorter 'ls'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+## Suspenseful 'cd' (pun intended)
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+## Quick 'mkdir' and 'cd' to new folder
+function mkd {
+  mkdir -p "$@" && cd "$@"
+}
+
+## List terminal jobs or kill last one
+alias jobs='jobs -l'
+alias jkill='kill $!'
+
+## Add an "alert" alias for long running commands. Use like so:
+##   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([[ $? = 0 ]] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+## Quick exit clearing history
+alias x='history -cw && exit'
+
+
+# Static servers
+## From this superuseful Gist: https://gist.github.com/willurd/5720255
+[[ $(which python2) ]] && alias serve2='echo "Serving on http://localhost:8000/" && python2 -m SimpleHTTPServer 8000'
+[[ $(which python3) ]] && alias serve3='echo "Serving on http://localhost:8000/" && python3 -m http.server 8000'
+
+if [[ $(which python2) ]]; then # Prefer python2 server
+  alias serve='serve2'
+elif [[ $(which python3) ]]; then # Fallback to python3 server
+  alias serve='serve3'
 fi
 
+
+# Git shortcuts
+alias gl='git log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"'
+
+alias gs="git status"
+alias gb="git branch"
+alias gd="git diff"
+
+## Remove local branches already deleted from remote. Use like so:
+##   gprune <remote>
+alias gprune="git remote prune"
+
+## Update fork from upstream
+function guf {
+  git checkout master
+  git pull upstream master
+  git push origin master
+}
+
+
+# System maintenance
+## Disks relation
+alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
+
+## Restart NetworkManager service
+alias renm='sudo systemctl restart NetworkManager'
+
+## System update and cleanup for Arch/Parabola
+function pac-up {
+  yaourt -Syua
+  sudo pacman -Rns $(pacman -Qqdt)
+}
+
+## System update and cleanup for Debian/Ubuntu
+alias upper='up --per'
+function up {
+  echolorize "UPDATE"
+  sudo apt-get update -qq # Show only errors on update
+
+  echolorize "UPGRADE"
+  sudo apt-get upgrade -y
+
+  if [[ "$#" != 0 && "$1" == "--per" ]]; then
+    echolorize --danger "DIST-UPGRADE"
+    sudo apt-get dist-upgrade
+  fi
+
+  echolorize --advise "AUTOREMOVE --PURGE"
+  sudo apt-get autoremove --purge -y
+
+  echolorize "AUTOCLEAN"
+  sudo apt-get autoclean
+}
+
+
+# ---------------- #
+# GRAPHICAL OUTPUT #
+# ---------------- #
+
 # Show distro and screen info
-if [ $(which screenfetch) ]; then
-  screenfetch
-fi
+[[ $(which screenfetch) ]] && screenfetch
