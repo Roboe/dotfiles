@@ -20,22 +20,21 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # From Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-#RS="\[\033[0m\]"    # reset
-RS="\e[0m"
 HC="\[\033[1m\]"    # hicolor
-
+FRS="\[\033[0m\]"   # foreground reset
 FRED="\[\033[31m\]" # red foreground
 FGRN="\[\033[32m\]" # green foreground
 FBLE="\[\033[33m\]" # yellow foreground
 FBLE="\[\033[34m\]" # blue foreground
 
+BRS="\e[0m"   # background reset
 BRED="\e[41m" # red background
 BGRN="\e[42m" # green background
 BYLW="\e[43m" # yellow background
 BBLE="\e[44m" # blue background
 
 function echolorize {
-  endclz=$RS # Reset color
+  endclz=$BRS # Reset color
   case "$1" in
   "--danger") clz=$BRED && shift ;; # red bg
   "--advise") clz=$BYLW && shift ;; # yellow bg
@@ -69,8 +68,8 @@ fi
 
 # Change prompt
 PS1=""
-PS1+="┌─╼[$HC$FBLE\h$RS]╾─╼[$FGRN\w$RS]\$(__git_ps1) \n"
-PS1+="└╼ $HC\$ $RS"
+PS1+="┌─╼[$HC$FBLE\h$FRS]╾─╼[$FGRN\w$FRS]\$(__git_ps1) \n"
+PS1+="└╼ $HC\$ $FRS"
 
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
