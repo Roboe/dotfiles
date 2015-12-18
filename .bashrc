@@ -89,11 +89,11 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 # Python VirtualEnvWrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Node Version Manager setup
 export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Ruby enVironment Manager setup
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
