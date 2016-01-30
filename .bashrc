@@ -83,13 +83,11 @@ PS1+="└╼ $HC\$ $FRS"
 ## To use Python 2, use 'python2' instead
 [[ $(which python3) ]] && alias python='python3'
 
-# Java setup
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-
 # Python VirtualEnvWrapper setup
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
+[[ -s "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
 
 # Node Version Manager setup
 export NVM_DIR="$HOME/.nvm"
@@ -99,11 +97,14 @@ export NVM_DIR="$HOME/.nvm"
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Java setup
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
 # Add Android SDK to PATH
-PATH="$PATH:/opt/android-sdk-linux/platform-tools"
+export PATH="$PATH:/opt/android/sdk-linux/platform-tools"
 
 # Add Android Studio to PATH
-PATH="$PATH:/opt/android-studio/bin"
+export PATH="$PATH:/opt/android/studio/bin"
 
 
 # --------------------- #
