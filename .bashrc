@@ -92,6 +92,7 @@ VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
 # Node Version Manager setup
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
 # Ruby enVironment Manager setup
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
