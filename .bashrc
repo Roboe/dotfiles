@@ -95,8 +95,9 @@ export NVM_DIR="$HOME/.nvm"
 [[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
 # Ruby enVironment Manager setup
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export RVM_DIR="$HOME/.rvm"
+[[ -s "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -r "$RVM_DIR/scripts/completion" ]] && source "$RVM_DIR/scripts/completion"
 
 # Java setup
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
