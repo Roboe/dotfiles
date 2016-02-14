@@ -87,16 +87,16 @@ PS1+="└╼ $HC\$ $FRS"
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
-[[ -s "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
+[[ -r "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
 
 # Node Version Manager setup
 export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
 # Ruby enVironment Manager setup
 export RVM_DIR="$HOME/.rvm"
-[[ -s "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -r "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -r "$RVM_DIR/scripts/completion" ]] && source "$RVM_DIR/scripts/completion"
 
 # Java setup
