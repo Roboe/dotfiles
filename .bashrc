@@ -24,7 +24,7 @@ HC="\[\033[1m\]"    # hicolor
 FRS="\[\033[0m\]"   # foreground reset
 FRED="\[\033[31m\]" # red foreground
 FGRN="\[\033[32m\]" # green foreground
-FBLE="\[\033[33m\]" # yellow foreground
+FYLW="\[\033[33m\]" # yellow foreground
 FBLE="\[\033[34m\]" # blue foreground
 
 BRS="\e[0m"   # background reset
