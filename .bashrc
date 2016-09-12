@@ -145,16 +145,21 @@ alias x='history -cw && exit'
 
 
 # Static servers
-## From this superuseful Gist: https://gist.github.com/willurd/5720255
+## HTTP server. From this superuseful Gist: https://gist.github.com/willurd/5720255
 [[ $(which python2) ]] && alias serve2='echo "Serving on http://localhost:8000/" && python2 -m SimpleHTTPServer 8000'
 [[ $(which python3) ]] && alias serve3='echo "Serving on http://localhost:8000/" && python3 -m http.server 8000'
 
+## FTP server. Prerequisite: 'python-pyftpdlib' or 'python3-pyftpdlib' package
+[[ $(which python2) ]] && alias ftpserve2='echo "Serving on http://localhost:2121/" && python2 -m pyftpdlib'
+[[ $(which python3) ]] && alias ftpserve3='echo "Serving on http://localhost:2121/" && python3 -m pyftpdlib'
+
 if [[ $(which python2) ]]; then # Prefer python2 server
   alias serve='serve2'
+  alias ftpserve='ftpserve2'
 elif [[ $(which python3) ]]; then # Fallback to python3 server
   alias serve='serve3'
+  alias ftpserve='ftpserve3'
 fi
-
 
 # Git shortcuts
 #alias gl='git log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"'
