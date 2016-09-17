@@ -34,14 +34,15 @@ BYLW="\e[43m" # yellow background
 BBLE="\e[44m" # blue background
 
 function echolorize {
-  endclz=$BRS # Reset color
+  endclz=$FRS$BRS # Reset color
   case "$1" in
   "--danger") clz=$BRED && shift ;; # red bg
   "--advise") clz=$BYLW && shift ;; # yellow bg
+  "--highlight") clz=$HC && shift ;; # highlight color
   *) clz=$BBLE ;; # blue bg (default)
   esac
 
-  [[ "$#" != 0 ]] && echo -e "${clz}# $1 ${endclz}"
+  [[ "$#" != 0 ]] && echo -e "${clz}~ $1 ${endclz}"
 }
 
 
@@ -195,9 +196,9 @@ alias renm='sudo systemctl restart NetworkManager'
 function choosejava {
   sudo update-alternatives --config java
   sudo update-alternatives --config javac
-  echo -e "${HC}Java interpreter version:${FRS}"
+  echolorize --highlight "Java interpreter version:"
   java -version
-  echo -e "${HC}Java compiler version:${FRS}"
+  echolorize --highlight "Java compiler version:"
   javac -version
 }
 
