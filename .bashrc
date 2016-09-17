@@ -191,6 +191,16 @@ alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
 ## Restart NetworkManager service
 alias renm='sudo systemctl restart NetworkManager'
 
+## Configure the default Java version
+function choosejava {
+  sudo update-alternatives --config java
+  sudo update-alternatives --config javac
+  echo -e "${HC}Java interpreter version:${FRS}"
+  java -version
+  echo -e "${HC}Java compiler version:${FRS}"
+  javac -version
+}
+
 ## System update and cleanup for Arch/Parabola
 function pac-up {
   yaourt -Syua
