@@ -20,12 +20,12 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # From Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-HC="\033[1m"    # hicolor
-FRS="\033[0m"   # foreground reset
-FRED="\033[31m" # red foreground
-FGRN="\033[32m" # green foreground
-FYLW="\033[33m" # yellow foreground
-FBLE="\033[34m" # blue foreground
+HC="\[\033[1m\]"    # hicolor
+FRS="\[\033[0m\]"   # foreground reset
+FRED="\[\033[31m\]" # red foreground
+FGRN="\[\033[32m\]" # green foreground
+FYLW="\[\033[33m\]" # yellow foreground
+FBLE="\[\033[34m\]" # blue foreground
 
 BRS="\e[0m"   # background reset
 BRED="\e[41m" # red background
