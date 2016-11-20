@@ -133,6 +133,9 @@ function mkd {
   mkdir -p "$@" && cd "$@"
 }
 
+## Search for some text in the current folder
+alias search='grep -rnw . -e'
+
 ## List terminal jobs or kill last one
 alias jobs='jobs -l'
 alias jkill='kill $!'
