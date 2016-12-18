@@ -136,6 +136,9 @@ function mkd {
 ## Search for some text in the current folder
 alias search='grep -rnw . -e'
 
+## Print file size
+alias filesize='du --human-readable'
+
 ## List terminal jobs or kill last one
 alias jobs='jobs -l'
 alias jkill='kill $!'
