@@ -210,24 +210,25 @@ function choosejava {
 }
 
 ## System update and cleanup for Debian/Ubuntu
-alias upper='up --per'
-function up {
+function apt-up {
+  echolorize "APT COMMANDS"
+
   echolorize "UPDATE"
-  sudo apt-get update -qq # Show only errors on update
+  sudo apt update --quiet
 
   echolorize "UPGRADE"
-  sudo apt-get upgrade --assume-yes
+  sudo apt upgrade --assume-yes
 
   if [[ "$#" != 0 && "$1" == "--per" ]]; then
     echolorize --danger "DIST-UPGRADE"
-    sudo apt-get dist-upgrade
+    sudo apt full-upgrade
   fi
 
   echolorize --advise "AUTOREMOVE --PURGE"
-  sudo apt-get autoremove --purge --assume-yes
+  sudo apt autoremove --purge --assume-yes
 
   echolorize "AUTOCLEAN"
-  sudo apt-get autoclean
+  sudo apt autoclean
 }
 
 ## System update and cleanup for Arch/Parabola
