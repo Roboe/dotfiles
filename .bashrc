@@ -217,6 +217,10 @@ function up {
     apt-up $@
   fi
 
+  if [[ $(which dnf) ]]; then
+    dnf-up $@
+  fi
+
   if [[ $(which pacman) ]]; then
     pacman-up $@
   fi
@@ -246,6 +250,23 @@ function apt-up {
 
   echolorize "AUTOCLEAN"
   sudo apt autoclean
+}
+
+## System update and cleanup for Fedora
+function dnf-up {
+  echolorize "DNF COMMANDS"
+
+  echolorize "CHECK-UPDATE"
+  sudo dnf check-update
+
+  echolorize "UPGRADE"
+  sudo dnf upgrade
+
+  echolorize --advise "AUTOREMOVE"
+  sudo dnf autoremove
+
+  echolorize "CLEAN"
+  sudo dnf clean all
 }
 
 ## System update and cleanup for Arch/Parabola
