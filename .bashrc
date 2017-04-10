@@ -209,6 +209,23 @@ function choosejava {
   javac -version
 }
 
+
+## System update and cleanup for multiple GNU/Linux distros
+alias upper='up --per'
+function up {
+  if [[ $(which apt) ]]; then
+    apt-up $@
+  fi
+
+  if [[ $(which pacman) ]]; then
+    pacman-up $@
+  fi
+
+  if [[ $(which flatpak) ]]; then
+    flatpak-up $@
+  fi
+}
+
 ## System update and cleanup for Debian/Ubuntu
 function apt-up {
   echolorize "APT COMMANDS"
