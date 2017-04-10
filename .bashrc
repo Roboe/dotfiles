@@ -209,12 +209,6 @@ function choosejava {
   javac -version
 }
 
-## System update and cleanup for Arch/Parabola
-function pac-up {
-  yaourt --sync --refresh --upgrades --aur
-  sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
-}
-
 ## System update and cleanup for Debian/Ubuntu
 alias upper='up --per'
 function up {
@@ -234,6 +228,22 @@ function up {
 
   echolorize "AUTOCLEAN"
   sudo apt-get autoclean
+}
+
+## System update and cleanup for Arch/Parabola
+function pacman-up {
+  echolorize "PACMAN/YAOURT COMMANDS"
+
+  if [[ $(which yaourt) ]]; then
+    echolorize "SYNC UPDATES FROM AUR"
+    yaourt --sync --refresh --upgrades --aur
+  else
+    echolorize "SYNC UPDATES"
+    pacman --sync --refresh --upgrades
+  fi
+
+  echolorize "REMOVE ORPHANS"
+  sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
 }
 
 
