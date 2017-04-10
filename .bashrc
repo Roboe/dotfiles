@@ -9,7 +9,7 @@
 
 # enable color support of ls and also add handy aliases
 if [[ -x /usr/bin/dircolors ]]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  test -r ~/.dircolors && eval "$(dircolors --sh ~/.dircolors)" || eval "$(dircolors --sh)"
   alias ls='ls --color=auto'
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
@@ -61,9 +61,9 @@ unset HISTFILE
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    . /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/bash_completion
   elif [[ -f /etc/bash_completion ]]; then
-    . /etc/bash_completion
+    source /etc/bash_completion
   fi
 fi
 
@@ -119,9 +119,9 @@ export PATH="$PATH:/opt/android/studio/bin"
 
 # Terminal navigation
 ## Shorter 'ls'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls --all --format=long --classify'
+alias la='ls --classify'
+alias l='ls --format=vertical --classify'
 
 ## Suspenseful 'cd' (pun intended)
 alias ..='cd ..'
@@ -130,11 +130,11 @@ alias ....='cd ../../..'
 
 ## Quick 'mkdir' and 'cd' to new folder
 function mkd {
-  mkdir -p "$@" && cd "$@"
+  mkdir --parents "$@" && cd "$@"
 }
 
 ## Search for some text in the current folder
-alias search='grep -rnw . -e'
+alias search='grep --recursive --line-number --word-regexp -e'
 
 ## Print file size
 alias filesize='du --human-readable'
@@ -144,7 +144,7 @@ alias jobs='jobs -l'
 alias jkill='kill $!'
 
 ## Local IP addresses
-alias localip='hostname -I'
+alias localip='hostname --all-ip-addresses'
 
 ## Add an "alert" alias for long running commands. Use like so:
 ##   sleep 10; alert
@@ -194,7 +194,7 @@ function guf {
 
 # System maintenance
 ## Disks relation
-alias disk='df -h | grep -e /dev/sd -e Filesystem' # Show disk information
+alias disk='df --human-readable | grep -e /dev/sd -e Filesystem' # Show disk information
 
 ## Restart NetworkManager service
 alias renm='sudo systemctl restart NetworkManager'
@@ -211,8 +211,8 @@ function choosejava {
 
 ## System update and cleanup for Arch/Parabola
 function pac-up {
-  yaourt -Syua
-  sudo pacman -Rns $(pacman -Qqdt)
+  yaourt --sync --refresh --upgrades --aur
+  sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
 }
 
 ## System update and cleanup for Debian/Ubuntu
@@ -222,7 +222,7 @@ function up {
   sudo apt-get update -qq # Show only errors on update
 
   echolorize "UPGRADE"
-  sudo apt-get upgrade -y
+  sudo apt-get upgrade --assume-yes
 
   if [[ "$#" != 0 && "$1" == "--per" ]]; then
     echolorize --danger "DIST-UPGRADE"
@@ -230,7 +230,7 @@ function up {
   fi
 
   echolorize --advise "AUTOREMOVE --PURGE"
-  sudo apt-get autoremove --purge -y
+  sudo apt-get autoremove --purge --assume-yes
 
   echolorize "AUTOCLEAN"
   sudo apt-get autoclean
@@ -243,3 +243,4 @@ function up {
 
 # Show distro and screen info
 [[ $(which screenfetch) ]] && screenfetch
+
