@@ -246,6 +246,14 @@ function pacman-up {
   sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
 }
 
+## Update flatpak packages
+function flatpak-up {
+  echolorize "FLATPAK COMMANDS"
+
+  echolorize "UPDATE"
+  sudo flatpak update
+}
+
 
 # ---------------- #
 # GRAPHICAL OUTPUT #
