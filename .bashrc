@@ -66,6 +66,10 @@ if ! shopt -oq posix; then
     source /etc/bash_completion
   fi
 fi
+# git completion (Fedora)
+if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
 
 # Change prompt
 PS1=""
