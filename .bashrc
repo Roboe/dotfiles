@@ -19,30 +19,17 @@ if [[ -x /usr/bin/dircolors ]]; then
   alias egrep='egrep --color=auto'
 fi
 
-# From Archwiki: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-HC="\[\033[1m\]"    # hicolor
-FRS="\[\033[0m\]"   # foreground reset
-FRED="\[\033[31m\]" # red foreground
-FGRN="\[\033[32m\]" # green foreground
-FYLW="\[\033[33m\]" # yellow foreground
-FBLE="\[\033[34m\]" # blue foreground
-
-BRS="\e[0m"   # background reset
-BRED="\e[41m" # red background
-BGRN="\e[42m" # green background
-BYLW="\e[43m" # yellow background
-BBLE="\e[44m" # blue background
-
+# From ArchWiki: https://wiki.archlinux.org/index.php/Bash/Prompt_customization#Common_capabilities
 function echolorize {
-  endclz=$FRS$BRS # Reset color
+  local RST="$(tput sgr0)" # reset text
   case "$1" in
-  "--danger") clz=$BRED && shift ;; # red bg
-  "--advise") clz=$BYLW && shift ;; # yellow bg
-  "--highlight") clz=$HC && shift ;; # highlight color
-  *) clz=$BBLE ;; # blue bg (default)
+  "--title" ) local CLR="$(tput bold)$(tput smso)" && shift ;; # highlighted text
+  "--danger") local CLR="$(tput setab 1)"          && shift ;; # red background
+  "--advise") local CLR="$(tput setab 3)"          && shift ;; # yellow background
+  *         ) local CLR="$(tput setab 4)"                   ;; # blue background (default)
   esac
 
-  [[ "$#" != 0 ]] && echo -e "${clz}~ $1 ${endclz}"
+  [[ "$#" != 0 ]] && echo -e "${CLR}~ $@ ${RST}"
 }
 
 
@@ -72,9 +59,18 @@ if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
 fi
 
 # Change prompt
-PS1=""
-PS1+="┌─╼[$HC$FBLE\h$FRS]╾─╼[$FGRN\w$FRS]\$(__git_ps1) \n"
-PS1+="└╼ $HC\$ $FRS"
+function change_prompt {
+  # Wrapping the tput output in \[ \] is recommended by the Bash man page. This helps Bash ignore non printable characters so that it correctly calculates the size of the prompt.
+  local RESET="\[$(tput sgr0)\]" # reset text attributes
+  local BOLD="\[$(tput bold)\]" # bold text
+  local GREEN="\[$(tput setaf 2)\]" # green text
+  local BLUE="\[$(tput setaf 4)\]" # blue text
+
+  PS1=""
+  PS1+="┌─╼[$BOLD$BLUE\h$RESET]╾─╼[$GREEN\w$RESET]\$(__git_ps1) \n"
+  PS1+="└╼ $BOLD\$$RESET "
+}
+change_prompt
 
 # Change the terminal title bar to always display the current directory
 #PROMPT_COMMAND='echo -ne "\e]0;$(pwd -P)\a"'
