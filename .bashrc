@@ -215,26 +215,28 @@ function choosejava {
 alias upper='up --per'
 function up {
   if [[ $(which apt) ]]; then
+    echolorize --title "APT"
     apt-up $@
   fi
 
   if [[ $(which dnf) ]]; then
+    echolorize --title "DNF"
     dnf-up $@
   fi
 
   if [[ $(which pacman) ]]; then
+    echolorize --title "PACMAN"
     pacman-up $@
   fi
 
   if [[ $(which flatpak) ]]; then
+    echolorize --title "FLATPAK"
     flatpak-up $@
   fi
 }
 
 ## System update and cleanup for Debian/Ubuntu
 function apt-up {
-  echolorize "APT COMMANDS"
-
   echolorize "UPDATE"
   sudo apt update --quiet
 
@@ -242,7 +244,7 @@ function apt-up {
   sudo apt upgrade --assume-yes
 
   if [[ "$#" != 0 && "$1" == "--per" ]]; then
-    echolorize --danger "DIST-UPGRADE"
+    echolorize --danger "FULL-UPGRADE"
     sudo apt full-upgrade
   fi
 
@@ -255,8 +257,6 @@ function apt-up {
 
 ## System update and cleanup for Fedora
 function dnf-up {
-  echolorize "DNF COMMANDS"
-
   echolorize "CHECK-UPDATE"
   sudo dnf check-update
 
@@ -272,8 +272,6 @@ function dnf-up {
 
 ## System update and cleanup for Arch/Parabola
 function pacman-up {
-  echolorize "PACMAN/YAOURT COMMANDS"
-
   if [[ $(which yaourt) ]]; then
     echolorize "SYNC UPDATES FROM AUR"
     yaourt --sync --refresh --upgrades --aur
@@ -288,8 +286,6 @@ function pacman-up {
 
 ## Update flatpak packages
 function flatpak-up {
-  echolorize "FLATPAK COMMANDS"
-
   echolorize "UPDATE"
   sudo flatpak update
 }
