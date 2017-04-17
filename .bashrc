@@ -240,12 +240,12 @@ function apt-up {
   echolorize "UPDATE"
   sudo apt update --quiet
 
-  echolorize "UPGRADE"
-  sudo apt upgrade --assume-yes
-
   if [[ "$#" != 0 && "$1" == "--per" ]]; then
     echolorize --danger "FULL-UPGRADE"
     sudo apt full-upgrade
+  else
+    echolorize "UPGRADE"
+    sudo apt upgrade --assume-yes
   fi
 
   echolorize --advise "AUTOREMOVE --PURGE"
