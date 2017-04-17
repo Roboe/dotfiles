@@ -17,6 +17,7 @@ if [[ -x /usr/bin/dircolors ]]; then
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
+  alias diff='diff --color=auto'
 fi
 
 # From ArchWiki: https://wiki.archlinux.org/index.php/Bash/Prompt_customization#Common_capabilities
