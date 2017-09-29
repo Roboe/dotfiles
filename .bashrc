@@ -305,6 +305,7 @@ function pacman-up {
 ## Update flatpak packages
 function flatpak-up {
   echolorize "UPDATE"
+  flatpak update --user
   sudo flatpak update
 }
 
