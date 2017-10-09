@@ -208,9 +208,9 @@ alias renm='sudo systemctl restart NetworkManager'
 function choosejava {
   sudo update-alternatives --config java
   sudo update-alternatives --config javac
-  echolorize --highlight "Java interpreter version:"
+  echolorize --title "Java interpreter version"
   java -version
-  echolorize --highlight "Java compiler version:"
+  echolorize --title "Java compiler version"
   javac -version
 }
 
