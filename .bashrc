@@ -95,10 +95,9 @@ VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
 export N_PREFIX="/opt/node"
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
-# Ruby enVironment Manager setup
-export RVM_DIR="$HOME/.rvm"
-[[ -r "$RVM_DIR/scripts/rvm" ]] && source "$RVM_DIR/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -r "$RVM_DIR/scripts/completion" ]] && source "$RVM_DIR/scripts/completion"
+# Add Ruby user gems to PATH
+export GEMS_DIR="$HOME/.gem"
+[[ -r "$GEMS_DIR" ]] && export PATH="$PATH:$(ls -td -- $GEMS_DIR/ruby/*/ | head -n 1)./bin"
 
 # Java setup
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
