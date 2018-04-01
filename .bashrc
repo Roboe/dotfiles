@@ -91,10 +91,9 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
 [[ -r "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
 
-# Node Version Manager setup
-export NVM_DIR="$HOME/.nvm"
-[[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+# Node Version Management setup
+export N_PREFIX="/opt/node"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 # Ruby enVironment Manager setup
 export RVM_DIR="$HOME/.rvm"
