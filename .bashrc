@@ -171,23 +171,7 @@ elif [[ $(which python3) ]]; then # Fallback to python3 server
 fi
 
 
-# Git shortcuts
-alias gs="git status"
-alias gb="git branch"
-alias gd="git diff"
-alias gf="git fetch --all"
-
-## Log a list of commits and branch relations, one per line
-alias gl='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all' # From http://stackoverflow.com/a/9074343
-
-## Navigate throught commit's patches. n go forward, shift+n go backwards
-alias glp='git -c core.pager="less --pattern=^commit.*$" log --patch'
-
-## Remove local branches already deleted from remote. Use like so:
-##   gprune <remote>
-alias gprune="git remote prune"
-
-## Update fork from upstream
+## Update git fork from upstream
 function guf {
   git checkout master
   git pull upstream master
