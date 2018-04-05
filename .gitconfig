@@ -1,0 +1,11 @@
+[user]
+	name = Roberto MF
+	email = git@virgulilla.com
+[push]
+	default = simple
+[color]
+	ui = auto
+[alias]
+	unstage = reset HEAD --
+	restore = checkout --
+	last = log -1 HEAD
