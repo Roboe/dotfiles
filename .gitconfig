@@ -6,7 +6,7 @@
 [color]
 	ui = auto
 [alias]
-	s = status
+	s = status --short --branch
 	b = branch
 	d = diff
 	f = fetch --all
