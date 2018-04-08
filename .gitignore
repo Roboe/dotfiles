@@ -9,5 +9,6 @@
 !.profile
 !.bash_profile
 !.bash_logout
+!.curlrc
 !.gemrc
 !.gitconfig
