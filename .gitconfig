@@ -15,6 +15,7 @@
 	l = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 	# Navigate throught commit's patches. n go forward, shift+n go backwards
 	lp = -c core.pager='less --pattern=^commit.*$' log --patch
+	amend = commit --amend
 	prune = remote prune
 	unstage = reset HEAD --
 	restore = checkout --
