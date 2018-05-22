@@ -9,7 +9,7 @@
 	s = status --short --branch
 	b = branch
 	d = diff
-	f = fetch --all
+	f = fetch --all --prune
 	c = commit -m
 	# Pretty log alias from http://stackoverflow.com/a/9074343
 	l = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
