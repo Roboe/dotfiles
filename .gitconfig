@@ -7,7 +7,7 @@
 	ui = auto
 [alias]
 	s = status --short --branch
-	b = branch
+	b = branch --all
 	d = diff
 	f = fetch --all --prune
 	c = commit -m
