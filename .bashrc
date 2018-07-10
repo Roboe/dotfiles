@@ -228,6 +228,8 @@ function dim {
 ## System update and cleanup for multiple GNU/Linux distros
 alias upper='up --per'
 function up {
+  wait-for-network
+
   if [[ $(which apt) ]]; then
     echolorize --title "APT"
     apt-up $@
