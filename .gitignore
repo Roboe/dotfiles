@@ -12,3 +12,9 @@
 !.curlrc
 !.gemrc
 !.gitconfig
+
+# Include empty history files (mod 400)
+!.node_repl_history
+!.wget-hsts
+!.python_history
+!.lesshst
