@@ -104,7 +104,7 @@ export GEMS_DIR="$HOME/.gem"
 [[ -r "$GEMS_DIR" ]] && export PATH="$PATH:$(ls -td -- $GEMS_DIR/ruby/*/ | head -n 1)bin"
 
 # Java setup
-export JAVA_HOME=/usr/lib/jvm/java-10-openjdk-amd64/
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 
 # Add Android SDK to PATH
 export PATH="$PATH:/opt/android/sdk-linux/platform-tools"
