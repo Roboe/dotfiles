@@ -300,11 +300,12 @@ function pacman-up {
   sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
 }
 
-## Update flatpak packages
+
+## Update and cleanup flatpak packages
 function flatpak-up {
   echolorize "UPDATE"
-  flatpak update --user
-  sudo flatpak update
+  flatpak --user update --assumeyes
+  flatpak --user uninstall --unused --assumeyes
 }
 
 ## Install local package with Gnome Software
