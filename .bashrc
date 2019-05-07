@@ -109,8 +109,6 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 # Add Android SDK to PATH
 export PATH="$PATH:/opt/android/sdk-linux/platform-tools"
 
-# Add Android Studio to PATH
-export PATH="$PATH:/opt/android/studio/bin"
 
 
 # --------------------- #
