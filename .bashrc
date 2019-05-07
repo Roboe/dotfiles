@@ -308,6 +308,9 @@ function flatpak-up {
   flatpak --user uninstall --unused --assumeyes
 }
 
+## Completely remove flatpak packages and data
+alias flatpak-rm="flatpak --user uninstall --delete-data"
+
 ## Install local package with Gnome Software
 [[ $(which gnome-software) ]] && function software-install {
   gnome-software --local-filename="$1"
