@@ -224,6 +224,9 @@ function dim {
   echo $DESIRED_BRIGHTNESS | sudo tee /sys/class/backlight/intel_backlight/brightness
 }
 
+## Check the battery status and charge
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage"'
+
 
 ## System update and cleanup for multiple GNU/Linux distros
 alias upper='up --per'
