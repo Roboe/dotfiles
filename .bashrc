@@ -30,7 +30,23 @@ function echolorize {
   *         ) local CLR="$(tput setab 4)"                   ;; # blue background (default)
   esac
 
-  [[ "$#" != 0 ]] && echo -e "${CLR}~ $@ ${RST}"
+  [[ "$#" != 0 ]] && echo -e "${CLR} $@ ${RST}"
+}
+
+# Emoji codepoints from the amazing http://www.fileformat.info
+function emoji {
+  case "$1" in
+  "package" ) local CODEPOINT="\U1F4E6" ;;
+  "community" ) local CODEPOINT="\U1F465" ;;
+  "circular arrows" ) local CODEPOINT="\U1F504" ;;
+  "download" ) local CODEPOINT="\U1F4E5" ;;
+  "whirlpool" ) local CODEPOINT="\U1F300" ;;
+  "tornado" ) local CODEPOINT="\U1F32A\UFE0F\U00A0" ;;
+  "cup" ) local CODEPOINT="\U2615" ;;
+  "traffic light" ) local CODEPOINT="\U1F6A6" ;;
+  esac
+
+  echo -n "$CODEPOINT"
 }
 
 
@@ -204,9 +220,9 @@ alias renm='sudo systemctl restart NetworkManager'
 function choosejava {
   sudo update-alternatives --config java
   sudo update-alternatives --config javac
-  echolorize --title "Java interpreter version"
+  echolorize --title "$(emoji "cup") Java interpreter version"
   java -version
-  echolorize --title "Java compiler version"
+  echolorize --title "$(emoji "traffic light") Java compiler version"
   javac -version
 }
 
@@ -234,80 +250,81 @@ function up {
   wait-for-network
 
   if [[ $(which apt) ]]; then
-    echolorize --title "APT"
+    echolorize --title "$(emoji "package") APT"
     apt-up $@
   fi
 
   if [[ $(which dnf) ]]; then
-    echolorize --title "DNF"
+    echolorize --title "$(emoji "package") DNF"
     dnf-up $@
   fi
 
   if [[ $(which pacman) ]]; then
-    echolorize --title "PACMAN"
+    echolorize --title "$(emoji "package") PACMAN"
     pacman-up $@
   fi
 
   if [[ $(which flatpak) ]]; then
-    echolorize --title "FLATPAK"
+    echolorize --title "$(emoji "package") FLATPAK"
     flatpak-up $@
   fi
 }
 
 ## System update and cleanup for Debian/Ubuntu
 function apt-up {
-  echolorize "UPDATE"
+  echolorize "$(emoji "circular arrows") UPDATE"
   sudo apt update --quiet
 
   if [[ "$#" != 0 && "$1" == "--per" ]]; then
-    echolorize --danger "FULL-UPGRADE"
+    echolorize --danger "$(emoji "download") FULL-UPGRADE"
     sudo apt full-upgrade
   else
-    echolorize "UPGRADE"
+    echolorize "$(emoji "download") UPGRADE"
     sudo apt upgrade --assume-yes
   fi
 
-  echolorize --advise "AUTOREMOVE --PURGE"
+  echolorize --advise "$(emoji "whirlpool") AUTOREMOVE --PURGE"
   sudo apt autoremove --purge --assume-yes
 
-  echolorize "AUTOCLEAN"
+  echolorize "$(emoji "tornado") AUTOCLEAN"
   sudo apt autoclean
 }
 
 ## System update and cleanup for Fedora
 function dnf-up {
-  echolorize "CHECK-UPDATE"
+  echolorize "$(emoji "circular arrows") CHECK-UPDATE"
   sudo dnf check-update
 
-  echolorize "UPGRADE"
+  echolorize "$(emoji "download") UPGRADE"
   sudo dnf upgrade
 
-  echolorize --advise "AUTOREMOVE"
+  echolorize --advise "$(emoji "whirlpool") AUTOREMOVE"
   sudo dnf autoremove
 
-  echolorize "CLEAN"
+  echolorize "$(emoji "tornado") CLEAN"
   sudo dnf clean all
 }
 
 ## System update and cleanup for Arch/Parabola
 function pacman-up {
   if [[ $(which yaourt) ]]; then
-    echolorize "SYNC UPDATES FROM AUR"
+    echolorize "$(emoji "community") SYNC UPDATES FROM AUR"
     yaourt --sync --refresh --upgrades --aur
   else
-    echolorize "SYNC UPDATES"
+    echolorize "$(emoji "download") SYNC UPDATES"
     pacman --sync --refresh --upgrades
   fi
 
-  echolorize "REMOVE ORPHANS"
+  echolorize "$(emoji "whirlpool") REMOVE ORPHANS"
   sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
 }
 
 
 ## Update and cleanup flatpak packages
 function flatpak-up {
-  echolorize "UPDATE"
+  echolorize "$(emoji "circular arrows") UPDATE"
   flatpak --user update --assumeyes
+  echolorize "$(emoji "whirlpool") UNINSTALL UNUSED"
   flatpak --user uninstall --unused --assumeyes
 }
 
