@@ -24,10 +24,10 @@ fi
 function echolorize {
   local RST="$(tput sgr0)" # reset text
   case "$1" in
-  "--title" ) local CLR="$(tput bold)$(tput smso)" && shift ;; # highlighted text
-  "--danger") local CLR="$(tput setab 1)"          && shift ;; # red background
-  "--advise") local CLR="$(tput setab 3)"          && shift ;; # yellow background
-  *         ) local CLR="$(tput setab 4)"                   ;; # blue background (default)
+    "--title" ) local CLR="$(tput bold)$(tput smso)" && shift ;; # highlighted text
+    "--danger") local CLR="$(tput setab 1)"          && shift ;; # red background
+    "--advise") local CLR="$(tput setab 3)"          && shift ;; # yellow background
+    *         ) local CLR="$(tput setab 4)"                   ;; # blue background (default)
   esac
 
   [[ "$#" != 0 ]] && echo -e "${CLR} $@ ${RST}"
@@ -36,14 +36,14 @@ function echolorize {
 # Emoji codepoints from the amazing http://www.fileformat.info
 function emoji {
   case "$1" in
-  "package" ) local CODEPOINT="\U1F4E6" ;;
-  "community" ) local CODEPOINT="\U1F465" ;;
-  "circular arrows" ) local CODEPOINT="\U1F504" ;;
-  "download" ) local CODEPOINT="\U1F4E5" ;;
-  "whirlpool" ) local CODEPOINT="\U1F300" ;;
-  "tornado" ) local CODEPOINT="\U1F32A\UFE0F\U00A0" ;;
-  "cup" ) local CODEPOINT="\U2615" ;;
-  "traffic light" ) local CODEPOINT="\U1F6A6" ;;
+    "package" ) local CODEPOINT="\U1F4E6" ;;
+    "community" ) local CODEPOINT="\U1F465" ;;
+    "circular arrows" ) local CODEPOINT="\U1F504" ;;
+    "download" ) local CODEPOINT="\U1F4E5" ;;
+    "whirlpool" ) local CODEPOINT="\U1F300" ;;
+    "tornado" ) local CODEPOINT="\U1F32A\UFE0F\U00A0" ;;
+    "cup" ) local CODEPOINT="\U2615" ;;
+    "traffic light" ) local CODEPOINT="\U1F6A6" ;;
   esac
 
   echo -n "$CODEPOINT"
