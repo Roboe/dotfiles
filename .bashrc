@@ -49,7 +49,7 @@ function emoji {
     "whirlpool"      ) local CODEPOINTS="\U1F300"          ;;
   esac
 
-  echo -n "$CODEPOINTS"
+  echo -en "$CODEPOINTS"
 }
 
 
