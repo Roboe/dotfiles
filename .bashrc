@@ -8,7 +8,8 @@
 # --------------- #
 
 # enable color support of ls and also add handy aliases
-if [[ -x /usr/bin/dircolors ]]; then
+if [[ -x /usr/bin/dircolors ]]
+then
   test -r ~/.dircolors && eval "$(dircolors --sh ~/.dircolors)" || eval "$(dircolors --sh)"
   alias ls='ls --color=auto'
   alias dir='dir --color=auto'
@@ -66,11 +67,12 @@ unset HISTFILE
 # enable programmable completion features (you don't need to enable
 # this if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -f /etc/bash_completion ]]; then
-    source /etc/bash_completion
+if ! shopt -oq posix
+then
+  if [[ -f /usr/share/bash-completion/bash_completion ]]
+  then source /usr/share/bash-completion/bash_completion
+  elif [[ -f /etc/bash_completion ]]
+  then source /etc/bash_completion
   fi
 fi
 # case-insensitive completions
@@ -78,8 +80,8 @@ bind "set completion-ignore-case on"
 # single tab completion
 bind "set show-all-if-ambiguous on"
 # git completion (Fedora)
-if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
-  source /usr/share/git-core/contrib/completion/git-prompt.sh
+if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]
+then source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
 # Change prompt
@@ -185,10 +187,12 @@ alias x='history -cw && exit'
 [[ $(which python2) ]] && alias ftpserve2='echo "Serving on http://localhost:2121/" && python2 -m pyftpdlib'
 [[ $(which python3) ]] && alias ftpserve3='echo "Serving on http://localhost:2121/" && python3 -m pyftpdlib'
 
-if [[ $(which python2) ]]; then # Prefer python2 server
+if [[ $(which python2) ]]
+then # Prefer python2 server
   alias serve='serve2'
   alias ftpserve='ftpserve2'
-elif [[ $(which python3) ]]; then # Fallback to python3 server
+elif [[ $(which python3) ]]
+then # Fallback to python3 server
   alias serve='serve3'
   alias ftpserve='ftpserve3'
 fi
@@ -233,7 +237,8 @@ function choosejava {
 ## Dim the screen brightness level, mainly for CLI terminals
 ## Pass a percentage as the only parameter
 function dim {
-  if [[ $1 -lt 1 ]]; then
+  if [[ $1 -lt 1 ]]
+  then
     echo "Turning off your screen is dangerous because the change persist after reboots"
     return
   fi
@@ -252,22 +257,26 @@ alias upper='up --per'
 function up {
   wait-for-network
 
-  if [[ $(which apt) ]]; then
+  if [[ $(which apt) ]]
+  then
     echolorize --title "$(emoji "package") APT"
     apt-up $@
   fi
 
-  if [[ $(which dnf) ]]; then
+  if [[ $(which dnf) ]]
+  then
     echolorize --title "$(emoji "package") DNF"
     dnf-up $@
   fi
 
-  if [[ $(which pacman) ]]; then
+  if [[ $(which pacman) ]]
+  then
     echolorize --title "$(emoji "package") PACMAN"
     pacman-up $@
   fi
 
-  if [[ $(which flatpak) ]]; then
+  if [[ $(which flatpak) ]]
+  then
     echolorize --title "$(emoji "package") FLATPAK"
     flatpak-up $@
   fi
@@ -278,7 +287,8 @@ function apt-up {
   echolorize "$(emoji "circular arrows") UPDATE"
   sudo apt update --quiet
 
-  if [[ "$#" != 0 && "$1" == "--per" ]]; then
+  if [[ "$#" != 0 && "$1" == "--per" ]]
+  then
     echolorize --danger "$(emoji "download") FULL-UPGRADE"
     sudo apt full-upgrade
   else
@@ -310,7 +320,8 @@ function dnf-up {
 
 ## System update and cleanup for Arch/Parabola
 function pacman-up {
-  if [[ $(which yaourt) ]]; then
+  if [[ $(which yaourt) ]]
+  then
     echolorize "$(emoji "community") SYNC UPDATES FROM AUR"
     yaourt --sync --refresh --upgrades --aur
   else
