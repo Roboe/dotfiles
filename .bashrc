@@ -117,7 +117,7 @@ VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
 [[ -r "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
 
 # Node Version Management setup
-export N_PREFIX="/opt/node"
+export N_PREFIX="$HOME/.local/node"
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 # Add Ruby user gems to PATH
