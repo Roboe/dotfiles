@@ -6,6 +6,7 @@
 
 # Include only dotfiles
 !.bashrc
+#!.bashrc.d # It's not possible to include folders if a parent directoy is excluded. I' using "git add -f" instead
 !.profile
 !.bash_profile
 !.bash_logout
