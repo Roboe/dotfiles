@@ -1,22 +1,2 @@
-!.gitignore
-
-# Ignore all my files! They are private! ¬¬
-*
-*/*
-
-# Include only dotfiles
-!.bashrc
-#!.bashrc.d # It's not possible to include folders if a parent directoy is excluded. I' using "git add -f" instead
-!.profile
-!.bash_profile
-!.bash_logout
-!.curlrc
-!.gemrc
-!.gitconfig
-#!.local/share/nautilus/scripts/ # It's not possible to include files if a parent directory is excluded. I'm using "git add -f" instead
-
-# Include empty history files (mod 400)
-!.node_repl_history
-!.wget-hsts
-!.python_history
-!.lesshst
+# Ignore nano backup files
+*.swp
