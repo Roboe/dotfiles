@@ -9,6 +9,7 @@
 	s = status --short --branch
 	b = branch --all
 	d = diff
+	ds = diff --staged
 	f = fetch --all --prune
 	c = commit -m
 	# Pretty log alias from http://stackoverflow.com/a/9074343
