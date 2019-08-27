@@ -17,6 +17,7 @@
 	# Navigate throught commit's patches. n go forward, shift+n go backwards
 	lp = -c core.pager='less --pattern=^commit.*$' log --patch
 	amend = commit --amend
+	pop = stash pop
 	prune = remote prune
 	unstage = reset HEAD --
 	restore = checkout --
