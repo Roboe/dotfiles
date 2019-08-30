@@ -23,4 +23,6 @@
 	pop = stash pop
 	prune = remote prune
 	restore = checkout --
+	switch = checkout
+	switch-c = checkout -b
 	unstage = reset HEAD --
