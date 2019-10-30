@@ -19,6 +19,7 @@
 	s = status --short --branch
 # Full word commands
 	amend = commit --amend
+	snippet = commit --allow-empty-message -m ""
 	last = log -1 HEAD
 	pop = stash pop
 	prune = remote prune
