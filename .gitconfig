@@ -27,3 +27,5 @@
 	switch = checkout
 	switch-c = checkout -b
 	unstage = reset HEAD --
+[pull]
+	rebase = true
