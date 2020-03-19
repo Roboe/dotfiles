@@ -4,3 +4,6 @@ alias disk='df --human-readable | grep -e /dev/sd -e Filesystem' # Show disk inf
 
 ## Restart NetworkManager service
 alias renm='sudo systemctl restart NetworkManager'
+
+## Re-launch NetworkManager connectivity check
+alias recc='sudo nmcli networking connectivity check'
