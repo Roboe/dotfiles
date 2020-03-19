@@ -27,5 +27,9 @@
 	switch = checkout
 	switch-c = checkout -b
 	unstage = reset HEAD --
+# Mirroring commands
+	mirror = clone --mirror
+	mirror-update = remote update
+	mirror-push = push --mirror
 [pull]
 	rebase = true
