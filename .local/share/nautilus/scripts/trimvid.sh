@@ -12,7 +12,7 @@ EXTENSION="${BASENAME##*.}"
 OUTPUT_FILE=$(zenity --file-selection --save --filename="$FILENAME.trim.$EXTENSION")
 
 DEFAULT_START="0:00:00.000"
-DEFAULT_END="$(ffprobe -v error -show_entries format=duration -sexagesimal -of default=noprint_wrappers=1:nokey=1 $INPUT_FILE)"
+DEFAULT_END="$(ffprobe -v error -show_entries format=duration -sexagesimal -of default=noprint_wrappers=1:nokey=1 "$INPUT_FILE")"
 
 
 [ -z "$START" ] && \
