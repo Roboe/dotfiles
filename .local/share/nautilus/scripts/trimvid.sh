@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 INPUT_FILE="$1"
 
 FILEPATH=$(dirname -z "$INPUT_FILE")
