@@ -26,7 +26,7 @@ ffmpeg \
   -to "$END" \
   -i "$INPUT_FILE" \
   -codec copy \
-  "$OUTPUT"
+  "$OUTPUT_FILE"
 
 zenity --notification \
   --text="File was successfully trimmed!"
