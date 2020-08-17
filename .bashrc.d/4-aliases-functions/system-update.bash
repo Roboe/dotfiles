@@ -6,25 +6,25 @@ function up {
   if [[ $(which apt) ]]
   then
     echolorize --title "$(emoji "package") APT"
-    apt-up $@
+    apt-up "$@"
   fi
 
   if [[ $(which dnf) ]]
   then
     echolorize --title "$(emoji "package") DNF"
-    dnf-up $@
+    dnf-up "$@"
   fi
 
   if [[ $(which pacman) ]]
   then
     echolorize --title "$(emoji "package") PACMAN"
-    pacman-up $@
+    pacman-up "$@"
   fi
 
   if [[ $(which flatpak) ]]
   then
     echolorize --title "$(emoji "package") FLATPAK"
-    flatpak-up $@
+    flatpak-up "$@"
   fi
 }
 
@@ -79,7 +79,7 @@ function pacman-up {
   fi
 
   echolorize "$(emoji "whirlpool") REMOVE ORPHANS"
-  sudo pacman --remove --native --search $(pacman --query --quiet --nodeps --unrequired)
+  sudo pacman --remove --native --search "$(pacman --query --quiet --nodeps --unrequired)"
 }
 
 

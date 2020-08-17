@@ -7,5 +7,4 @@
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 VIRTUALENVWRAPPER_INIT=/usr/local/bin/virtualenvwrapper.sh
-[[ -r "$VIRTUALENVWRAPPER_INIT" ]] && source $VIRTUALENVWRAPPER
-
+[[ -r "$VIRTUALENVWRAPPER_INIT" ]] && source "$VIRTUALENVWRAPPER"

@@ -4,7 +4,7 @@
 # Differences between [ and [[: http://mywiki.wooledge.org/BashFAQ/031
 
 function load_dotfiles {
-  for SCRIPT in ~/.bashrc.d/$1/*.bash
+  for SCRIPT in ~/.bashrc.d/"$1"/*.bash
   do source "$SCRIPT"
   done
 }

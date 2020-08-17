@@ -9,5 +9,5 @@ function dim {
 
   MAX_BRIGHTNESS=$(cat /sys/class/backlight/intel_backlight/max_brightness)
   DESIRED_BRIGHTNESS=$(expr ${1} * ${MAX_BRIGHTNESS} / 100)
-  echo $DESIRED_BRIGHTNESS | sudo tee /sys/class/backlight/intel_backlight/brightness
+  echo "$DESIRED_BRIGHTNESS" | sudo tee /sys/class/backlight/intel_backlight/brightness
 }
