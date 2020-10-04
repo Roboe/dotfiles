@@ -9,11 +9,11 @@ function load_dotfiles {
   done
 }
 
-# --------------- #
-# TERMINAL COLORS #
-# --------------- #
+# -------------- #
+# TERMINAL SETUP #
+# -------------- #
 
-load_dotfiles 1-terminal-colors
+load_dotfiles 1-terminal-setup
 
 
 # ----------------- #
