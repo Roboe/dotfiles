@@ -1,2 +1,2 @@
 # Show distro and screen info
-[[ $(which screenfetch) ]] && screenfetch
+[[ $(check_command screenfetch) ]] && screenfetch

@@ -3,25 +3,25 @@ alias upper='up --per'
 function up {
   wait-for-network
 
-  if [[ $(which apt) ]]
+  if [[ $(check_command apt) ]]
   then
     echolorize --title "$(emoji "package") APT"
     apt-up "$@"
   fi
 
-  if [[ $(which dnf) ]]
+  if [[ $(check_command dnf) ]]
   then
     echolorize --title "$(emoji "package") DNF"
     dnf-up "$@"
   fi
 
-  if [[ $(which pacman) ]]
+  if [[ $(check_command pacman) ]]
   then
     echolorize --title "$(emoji "package") PACMAN"
     pacman-up "$@"
   fi
 
-  if [[ $(which flatpak) ]]
+  if [[ $(check_command flatpak) ]]
   then
     echolorize --title "$(emoji "package") FLATPAK"
     flatpak-up "$@"
@@ -69,7 +69,7 @@ function dnf-up {
 
 ## Arch/Parabola
 function pacman-up {
-  if [[ $(which yaourt) ]]
+  if [[ $(check_command yaourt) ]]
   then
     echolorize "$(emoji "community") SYNC UPDATES FROM AUR"
     yaourt --sync --refresh --upgrades --aur

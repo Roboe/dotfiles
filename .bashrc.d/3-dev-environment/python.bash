@@ -1,6 +1,6 @@
 # Python 3 by default if available
 ## To use Python 2, use 'python2' instead
-[[ $(which python3) ]] && alias python='python3'
+[[ $(check_command python3) ]] && alias python='python3'
 
 
 # Python VirtualEnvWrapper setup
