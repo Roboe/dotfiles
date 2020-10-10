@@ -63,7 +63,7 @@ function dnf-up {
   sudo dnf autoremove
 
   echolorize "$(emoji "tornado") CLEAN"
-  sudo dnf clean all
+  sudo dnf clean packages
 }
 
 
