@@ -53,8 +53,8 @@ function apt-up {
 
 ## Fedora
 function dnf-up {
-  echolorize "$(emoji "circular arrows") CHECK-UPDATE"
-  sudo dnf check-update
+  echolorize "$(emoji "circular arrows") MAKECACHE"
+  sudo dnf makecache --refresh
 
   echolorize "$(emoji "download") UPGRADE"
   sudo dnf upgrade
