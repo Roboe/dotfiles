@@ -23,7 +23,6 @@
 	last = log -1 HEAD
 	pop = stash pop
 	prune = remote prune
-	restore = checkout --
 	unstage = reset HEAD --
 # Mirroring commands
 	mirror = clone --mirror
