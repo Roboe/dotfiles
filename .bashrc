@@ -9,16 +9,16 @@ function load_dotfiles {
   done
 }
 
-# -------------- #
-# TERMINAL SETUP #
-# -------------- #
+# ----------- #
+# SHELL UTILS #
+# ----------- #
 
-load_dotfiles 1-terminal-setup
+load_dotfiles 1-shell-utils
 
 
-# ----------------- #
-# SESSION SETTINGS  #
-# ----------------- #
+# --------------- #
+# SESSION SETUPS  #
+# --------------- #
 
 load_dotfiles 2-session
 
