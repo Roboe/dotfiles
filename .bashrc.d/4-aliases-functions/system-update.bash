@@ -62,8 +62,11 @@ function dnf-up {
   echolorize --advise "$(emoji "whirlpool") AUTOREMOVE"
   sudo dnf autoremove
 
-  echolorize "$(emoji "tornado") CLEAN"
+  echolorize "$(emoji "tornado") CLEAN (SYSTEM)"
   sudo dnf clean packages
+
+  echolorize "$(emoji "tornado") CLEAN (USER)"
+  dnf clean all
 }
 
 
