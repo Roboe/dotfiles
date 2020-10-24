@@ -1,5 +1,5 @@
-# POSIX way to check if a command is in PATH and it's executable
+# POSIX way to test if a command is in PATH and it's executable
 # https://stackoverflow.com/q/592620
-function check_command {
+function test_command {
   test -x "$(command -v $1)"
 }

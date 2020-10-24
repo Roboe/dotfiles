@@ -1,2 +1,2 @@
 # Show distro and screen info
-check_command screenfetch && screenfetch
+test_command screenfetch && screenfetch
